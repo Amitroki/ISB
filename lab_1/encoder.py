@@ -1,10 +1,10 @@
 import argparse
 
-from sources.functions_for_tasks import read_the_file, text_to_file
+from sources.functions_for_tasks import read_the_file, text_to_file, checking_the_correctness_of_the_key
+
 
 def message_encryption(key_word_path: str, source_text_path: str, result_text_path: str) -> str:
     """
-
     This function receives the key for encryption, 
     the path to the text for encryption and the path to the file which will contain the result 
     and, through the use of column-by-column transposition, 
@@ -14,7 +14,6 @@ def message_encryption(key_word_path: str, source_text_path: str, result_text_pa
         source_text (str): a string containing the path to the source text
         key_word (str): a string containing the path to the file with key word
         result (str): a string containing the path to the file with encrypted text
-
     """
     result = ''
     matrix = []
@@ -51,17 +50,28 @@ def message_encryption(key_word_path: str, source_text_path: str, result_text_pa
 
     text_to_file(result_text_path, result)
 
-def main():
+
+def main() -> None:
     parser = argparse.ArgumentParser(
-        prog="Post-columnar transposition", 
+        prog="Post-columnar transposition",
         description="Text encryption by post-column transposition")
-    parser.add_argument('input', type=str, help='A file (.txt) with the source text')
-    parser.add_argument('key', type=str, help='A file (.txt) with an encryption key')
-    parser.add_argument('output', type=str, help='A file (.txt) containing encrypted text')
+    parser.add_argument('input', type=str,
+                        help='A file (.txt) with the source text')
+    parser.add_argument(
+        'key', type=str, help='A file (.txt) with an encryption key')
+    parser.add_argument('output', type=str,
+                        help='A file (.txt) containing encrypted text')
 
     args = parser.parse_args()
 
+    if (checking_the_correctness_of_the_key(args.key) == False):
+        print("Use a keyword without duplicate letters!")
+        return
+    
     message_encryption(args.key, args.input, args.output)
+
 
 if __name__ == "__main__":
     main()
+
+# python lab_1\\encoder.py lab_1\\sources\\task_1\\input.txt lab_1\\sources\\task_1\\key_word.txt lab_1\\sources\\task_1\\output.txt
