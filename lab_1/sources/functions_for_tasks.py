@@ -44,4 +44,8 @@ def text_to_file(output_file_path: str, text_for_file: str) -> None:
         with open(output_file_path, "w", encoding="UTF-8") as file:
             file.write(text_for_file)
     except Exception as error:
+<<<<<<< HEAD
         raise Exception(f'There is a trouble: {error}')
+=======
+        raise Exception(f'There is a trouble: {error}')
+>>>>>>> 772d72edee08094fc6481143da125742ac74f803

@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 import argparse
 
+=======
+import os
+import sys
+import argparse
+
+project_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(project_directory)
+
+>>>>>>> 772d72edee08094fc6481143da125742ac74f803
 from sources.functions_for_tasks import read_the_file, text_to_file
 
 def message_encryption(key_word_path: str, source_text_path: str, result_text_path: str) -> str:
