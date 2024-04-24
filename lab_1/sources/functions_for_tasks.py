@@ -2,6 +2,7 @@ import json
 
 from typing import Dict
 
+
 def read_the_file(input_file_name: str) -> str:
     """
     This function takes the path to the file, 
@@ -63,9 +64,24 @@ def checking_the_correctness_of_the_key(key_file_name: str) -> bool:
     key = key.lower()
     return len(key) == len(set(key))
 
+
 def read_json_file(source_file_path: str) -> Dict[str, str]:
+    """
+    This function opens the file at the path specified in the arguments 
+    and writes the elements from it to the dictionary
+
+    Args:
+        source_file_path (str): a string containing the path to the file
+
+    Raises:
+        Exception: an exception occurs when a file cannot be opened
+
+    Returns:
+        Dict[str, str]: a dictionary with a letter in the first column 
+                        and its frequency of occurrence in the second column
+    """
     try:
-        with open(source_file_path, "w", encoding="UTF-8") as file:
+        with open(source_file_path, "r", encoding="UTF-8") as file:
             return json.loads(file.read())
     except Exception as error:
         raise Exception(f'There is a trouble: {error}')

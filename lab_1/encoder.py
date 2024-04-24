@@ -3,7 +3,7 @@ import argparse
 from sources.functions_for_tasks import read_the_file, text_to_file, checking_the_correctness_of_the_key
 
 
-def message_encryption(key_word_path: str, source_text_path: str, result_text_path: str) -> str:
+def text_encryption(key_word_path: str, source_text_path: str, result_text_path: str) -> str:
     """
     This function receives the key for encryption, 
     the path to the text for encryption and the path to the file which will contain the result 
@@ -11,9 +11,12 @@ def message_encryption(key_word_path: str, source_text_path: str, result_text_pa
     encrypts the text, after which it outputs a string as the result of the function
 
     Args:
-        source_text (str): a string containing the path to the source text
-        key_word (str): a string containing the path to the file with key word
-        result (str): a string containing the path to the file with encrypted text
+        source_text_path (str): a string containing the path to the source text
+        key_word_path (str): a string containing the path to the file with key word
+        result_text_path (str): a string containing the path to the file with encrypted text
+
+    Returns: 
+        str: a string with encrypted text
     """
     result = ''
     matrix = []
@@ -67,8 +70,8 @@ def main() -> None:
     if (checking_the_correctness_of_the_key(args.key) == False):
         print("Use a keyword without duplicate letters!")
         return
-    
-    message_encryption(args.key, args.input, args.output)
+
+    text_encryption(args.key, args.input, args.output)
 
 
 if __name__ == "__main__":
