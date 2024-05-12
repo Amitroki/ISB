@@ -17,14 +17,14 @@ def main() -> None:
     print(f"C++ sequence: {sequence_cxx}")
     print(f"1 test result: {frequency_bitwise_test(sequence_cxx)}")
     print(f"2 test result: {same_consecutive_bits_test(sequence_cxx)}")
-    print(f"3 test result: {longest_sequence_of_units_in_a_block_test(sequence_cxx)}")
-
-    print()
+    print(
+        f"3 test result: {longest_sequence_of_units_in_a_block_test(sequence_cxx)}")
     sequence_java = read_the_file(args.java)
     print(f"Java sequence: {sequence_java}")
     print(f"1 test result: {frequency_bitwise_test(sequence_java)}")
     print(f"2 test result: {same_consecutive_bits_test(sequence_java)}")
-    print(f"3 test result: {longest_sequence_of_units_in_a_block_test(sequence_java)}")
+    print(
+        f"3 test result: {longest_sequence_of_units_in_a_block_test(sequence_java)}")
 
 
 if __name__ == "__main__":
