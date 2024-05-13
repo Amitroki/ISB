@@ -30,4 +30,4 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
-# python lab_2\\nist.py lab_2\\results\\cxx.txt lab_2\\results\\java.txt
+# python lab_2\\nist.py lab_2\\sequences\\cxx.txt lab_2\\sequences\\java.txt

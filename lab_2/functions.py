@@ -2,7 +2,7 @@ import math
 
 from scipy.special import gammainc
 
-from constants import p
+from constants import P
 
 
 def read_the_file(input_file_name: str) -> str:
@@ -101,8 +101,8 @@ def longest_sequence_of_units_in_a_block_test(sequence: str) -> float:
         for i in range(8):
             if sequence[8 * block + i] == '1':
                 current += 1
-            else:
                 max_ones = max(current, max_ones)
+            else:
                 current = 0
         number_of_one_in_the_block.append(max_ones)
 
@@ -113,6 +113,6 @@ def longest_sequence_of_units_in_a_block_test(sequence: str) -> float:
     v4 = count_of_blocks - v1 - v2 - v3
     v = [v1, v2, v3, v4]
     xi_distribution = sum(
-        math.pow((v[i] - 16 * p[i]), 2) / (16 * p[i]) for i in range(4))
+        math.pow((v[i] - 16 * P[i]), 2) / (16 * P[i]) for i in range(4))
 
     return gammainc(1.5, xi_distribution / 2)
