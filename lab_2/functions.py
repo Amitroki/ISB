@@ -46,7 +46,6 @@ def frequency_bitwise_test(sequence: str) -> float:
     """
     s = abs(sum(list(map(lambda x: 1 if x == '1' else -1, sequence)))) / \
         math.sqrt(len(sequence))
-    
     return math.erfc(s / math.sqrt(2))
 
 
