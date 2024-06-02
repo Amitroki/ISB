@@ -20,3 +20,19 @@ class Functions:
                 key_file.write(key)
         except Exception as error:
             raise Exception(f'There is a trouble: {error}')
+        
+    @staticmethod
+    def read_bytes(source_file_path: str) -> bytes:
+        try:
+            with open(source_file_path, 'rb') as file:
+                return file.read()
+        except Exception as error:
+            raise Exception(f'There is a trouble: {error}')
+        
+    @staticmethod
+    def read_file(source_file_path: str) -> str:
+        try:
+            with open(source_file_path, mode = "r") as file:
+                return file.read()
+        except Exception as error:
+            raise Exception(f'There is a trouble: {error}')
