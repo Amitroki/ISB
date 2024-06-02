@@ -1,0 +1,8 @@
+{
+    "initial_file": "lab_3\\sources\\files\\default_text.txt",
+    "encrypted_file":"lab_3\\sources\\files\\encrypted.txt",
+    "decrypted_file":"lab_3\\sources\\files\\decrypted.txt",
+    "symmetric_key":"lab_3\\sources\\files\\symmetric_key.txt",
+    "public_key":"lab_3\\sources\\files\\public_asymm_key.pem",
+    "secret_key":"lab_3\\sources\\files\\private_asymm_key.pem"
+}
