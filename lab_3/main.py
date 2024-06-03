@@ -1,27 +1,40 @@
 import argparse
 
-from functions.hybrid_cryptosystem import HybridCriptography
 from functions.general_functions import Functions
+from functions.hybrid_cryptosystem import HybridCriptography
+
 
 def main() -> None:
+    """
+    This function allows you to generate keys for symmetric 
+    and asymmetric (private and public) encryption, allows you to encrypt text 
+    using the IDEA symmetric encryption algorithm, as well as decrypt text using the same algorithm
+    """
     parser = argparse.ArgumentParser()
 
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('-gen','--generation', help='Key generation mode', action="store_true")
-    group.add_argument('-enc','--encryption', help='Text encryption mode', action="store_true")
-    group.add_argument('-dec','--decryption', help='Text decryption mode', action="store_true")
-    parser.add_argument('-p', '--paths', help = 'Path to json file with paths')
+    group.add_argument('-gen', '--generation',
+                       help='Key generation mode', action="store_true")
+    group.add_argument('-enc', '--encryption',
+                       help='Text encryption mode', action="store_true")
+    group.add_argument('-dec', '--decryption',
+                       help='Text decryption mode', action="store_true")
+    parser.add_argument('-p', '--paths', help='Path to json file with paths')
 
     args = parser.parse_args()
 
     paths = Functions.read_json_file(args.paths)
 
     if args.generation:
-        HybridCriptography.generate_keys(paths["symmetric_key"], paths["secret_key"], paths["public_key"])
+        HybridCriptography.generate_keys(
+            paths["symmetric_key"], paths["secret_key"], paths["public_key"])
     if args.encryption:
-        HybridCriptography.encrypt_the_text(paths["initial_file"], paths["encrypted_file"], paths["symmetric_key"], paths["secret_key"])
+        HybridCriptography.encrypt_the_text(
+            paths["initial_file"], paths["encrypted_file"], paths["symmetric_key"], paths["secret_key"])
     if args.decryption:
-        HybridCriptography.decrypt_the_text(paths["encrypted_file"], paths["decrypted_file"], paths["symmetric_key"], paths["secret_key"])
+        HybridCriptography.decrypt_the_text(
+            paths["encrypted_file"], paths["decrypted_file"], paths["symmetric_key"], paths["secret_key"])
+
 
 if __name__ == "__main__":
     main()
