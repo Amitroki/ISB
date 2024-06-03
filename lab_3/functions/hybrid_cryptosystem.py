@@ -15,14 +15,17 @@ class HybridCriptography:
 
     @staticmethod
     def encrypt_the_text(path_to_the_default_text: str, path_to_the_encrypted_text: str, path_to_the_symmetric_key: str, path_to_the_private_key: str) -> None:
-        private_key = Functions.read_private_key(path_to_the_private_key)
-        encrypted_key = Functions.read_bytes(path_to_the_symmetric_key)
-        symmetric_key = AsymmetricCriptography.decrypt_key(encrypted_key, private_key)
-        SymmetricCryptography.encrypt(path_to_the_default_text, path_to_the_encrypted_text, symmetric_key)
+        try:
+            private_key = Functions.read_private_key(path_to_the_private_key)
+            encrypted_key = SymmetricCryptography.deserialize_key(path_to_the_symmetric_key)
+            symmetric_key = AsymmetricCriptography.decrypt_key(encrypted_key, private_key)
+            SymmetricCryptography.encrypt(path_to_the_default_text, path_to_the_encrypted_text, symmetric_key)
+        except Exception as error:
+            raise Exception(f'There is a trouble1: {error}')
 
     @staticmethod
     def decrypt_the_text(path_to_the_encrypted_text: str, path_to_the_decrypted_text: str, path_to_the_symmetric_key: str, path_to_the_private_key: str) -> None:
         private_key = Functions.read_private_key(path_to_the_private_key)
-        encrypted_key = SymmetricCryptography.deserialize_sym_key(path_to_the_symmetric_key)
+        encrypted_key = SymmetricCryptography.deserialize_key(path_to_the_symmetric_key)
         symmetric_key = AsymmetricCriptography.decrypt_key(encrypted_key, private_key)
         SymmetricCryptography.decrypt(path_to_the_encrypted_text, path_to_the_decrypted_text, symmetric_key)

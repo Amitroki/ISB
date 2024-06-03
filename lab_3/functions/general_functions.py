@@ -35,7 +35,7 @@ class Functions:
     @staticmethod
     def read_file(source_file_path: str) -> str:
         try:
-            with open(source_file_path, mode = "r") as file:
+            with open(source_file_path, mode = "r", encoding='utf-8') as file:
                 return file.read()
         except Exception as error:
             raise Exception(f'There is a trouble: {error}')
@@ -43,7 +43,7 @@ class Functions:
     @staticmethod
     def write_file(text: str, source_file_path: str) -> str:
         try:
-            with open(source_file_path, mode = "w") as file:
+            with open(source_file_path, mode = "w", encoding='utf-8') as file:
                 file.write(text)
         except Exception as error:
             raise Exception(f'There is a trouble: {error}')

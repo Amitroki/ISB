@@ -1,4 +1,4 @@
-from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives.asymmetric.padding import OAEP, MGF1
 from cryptography.hazmat.primitives import hashes
 
@@ -18,7 +18,7 @@ class AsymmetricCriptography:
 
     @staticmethod
     def decrypt_key(symmeric_key: bytes, private_key: rsa.RSAPrivateKey) -> bytes:
-        return private_key.decrypt(symmeric_key, OAEP(
+        return private_key.decrypt(symmeric_key, padding.OAEP(
             mgf=MGF1(algorithm=hashes.SHA256()),
             algorithm=hashes.SHA256(),
             label=None))

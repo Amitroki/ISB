@@ -24,21 +24,19 @@ class SymmetricCryptography:
         try:
             return  Functions.read_bytes(source_file_path)
         except Exception as error:
-            raise Exception(f'There is a trouble: {error}')
+            raise Exception(f'There is a troubleQ: {error}')
         
     @staticmethod
     def encrypt(path_to_text: str, path_to_encrypted_text: str, key: bytes) -> None:
         text_for_encryption = Functions.read_file(path_to_text)
 
-        padder = padding.ANSIX923(128).padder()
-        text = bytes(text, "UTF-8")
-        padded_text = padder.update(text) + padder.finalize()
-
-        iv = os.urandom(16)
+        padder = padding.PKCS7(16).padder()
+        text: bytes = bytes(text_for_encryption, "UTF-8")
+        padded_text: bytes = padder.update(text) + padder.finalize()
+        iv: bytes = os.urandom(8)
         cipher = Cipher(algorithms.IDEA(key), modes.CBC(iv))
-        encryptor = cipher.encryptor() 
-
-        c_text = iv + encryptor.update(padded_text) + encryptor.finalize()
+        encryptor = cipher.encryptor()
+        c_text: bytes = iv + encryptor.update(padded_text) + encryptor.finalize()
 
         Functions.write_bytes(c_text, path_to_encrypted_text)
 
@@ -46,8 +44,8 @@ class SymmetricCryptography:
     def decrypt(path_to_text: str, path_to_decrypted_text: str, key: bytes) -> None:
         default_text = Functions.read_bytes(path_to_text)
 
-        iv = default_text[:16]
-        text_for_decryption = default_text[16:]
+        iv = default_text[:8]
+        text_for_decryption = default_text[8:]
 
         cipher = Cipher(algorithms.IDEA(key), modes.CBC(iv))
         decrypt = cipher.decryptor()
