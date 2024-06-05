@@ -22,42 +22,6 @@ class SymmetricCryptography:
         return os.urandom(byte_size)
 
     @staticmethod
-    def serialize_key(source_file_path: str, key: bytes) -> None:
-        """
-        This function serializes the symmetric key
-
-        Args:
-            source_file_path (str): The file to which the serialized key will be written
-            key (bytes): The key itself
-
-        Raises:
-            Exception: Indicates any problem during key serialization
-        """
-        try:
-            Functions.write_bytes(key, source_file_path)
-        except Exception as error:
-            raise Exception(f'There is a trouble: {error}')
-
-    @staticmethod
-    def deserialize_key(source_file_path: str) -> bytes:
-        """
-        This function deserializes the symmetric key
-
-        Args:
-            source_file_path (str): The path to the file where the key is stored
-
-        Raises:
-            Exception: Indicates any problem during key deserialization
-
-        Returns:
-            bytes: The serialized key is returned
-        """
-        try:
-            return Functions.read_bytes(source_file_path)
-        except Exception as error:
-            raise Exception(f'There is a troubleQ: {error}')
-
-    @staticmethod
     def encrypt(path_to_text: str, path_to_encrypted_text: str, key: bytes) -> None:
         """
         This function uses a decrypted symmetric key 

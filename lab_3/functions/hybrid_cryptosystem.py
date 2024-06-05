@@ -46,7 +46,7 @@ class HybridCriptography:
         """
         try:
             private_key = Functions.read_private_key(path_to_the_private_key)
-            encrypted_key = SymmetricCryptography.deserialize_key(
+            encrypted_key = Functions.read_bytes(
                 path_to_the_symmetric_key)
             symmetric_key = AsymmetricCriptography.decrypt_key(
                 encrypted_key, private_key)
@@ -72,7 +72,7 @@ class HybridCriptography:
         """
         try:
             private_key = Functions.read_private_key(path_to_the_private_key)
-            encrypted_key = SymmetricCryptography.deserialize_key(
+            encrypted_key = Functions.read_bytes(
                 path_to_the_symmetric_key)
             symmetric_key = AsymmetricCriptography.decrypt_key(
                 encrypted_key, private_key)
